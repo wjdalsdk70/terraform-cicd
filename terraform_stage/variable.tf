@@ -8,12 +8,12 @@ variable "stage" {
 }
 variable "servicename" {
   type = string
-  default = "terraform_jm-story"
+  default = "terraform_jung9546"
 }
 variable "tags" {
   type = map(string)
   default = {
-    "name" = "jm-story_VPC"
+    "name" = "jung9546_VPC"
   }
 }
 
@@ -100,7 +100,7 @@ variable "instance_ebs_volume" {
 ##RDS
 variable "rds_dbname" {
   type = string
-  default = "jm-story"
+  default = "jung9546"
 }
 variable "rds_instance_count" {
   type = string

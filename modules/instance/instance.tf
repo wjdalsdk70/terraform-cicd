@@ -32,13 +32,13 @@ resource "aws_instance" "ec2" {
         var.tags)
 
   lifecycle {
-    ignore_changes = [user_data,associate_public_ip_address]
+    ignore_changes = [user_data,associate_public_ip_address,instance_state]
   }
 }
 
 #instance sg
 resource "aws_security_group" "sg-ec2-comm" {
-  name   = "aws-sg-${var.stage}-${var.servicename}-ec2-comm"
+  name   = "aws-sg-${var.stage}-${var.servicename}-ec2"
   vpc_id = local.vpc_id
 
   ingress {

@@ -2,11 +2,11 @@ terraform {
  required_version = ">= 1.0.0, < 2.0.0"
 
   backend "s3" {
-    bucket = "jm-story-terraformstate"
+    bucket = "jung9546-terraformstate"
     key  = "dev/terraform/terraform.tfstate"
     region = "ap-northeast-2"
     encrypt = true
-    dynamodb_table = "jm-story-terraform-state"
+    dynamodb_table = "jung9546-terraform-state"
   }
 }
 
@@ -42,7 +42,7 @@ module "vpc" {
   #security_attachments_propagation = merge(var.security_attachments_propagation, var.security_attachments)
 }
 
-module "jm-story-ec2" {
+module "jung9546-ec2" {
   source              = "../modules/instance"
 
   stage        = var.stage
@@ -68,7 +68,7 @@ yum install -y https://s3.ap-northeast-2.amazonaws.com/amazon-ssm-ap-northeast-2
 EOF
   ##SecurityGroup
   sg_ec2_ids = [aws_security_group.sg-ec2.id]
-  # depends_on = [module.vpc.sg-ec2-comm, module.iam-service-role.ec2-iam-role-profile]
+  #depends_on = [module.vpc.sg-ec2-comm, module.iam-service-role.ec2-iam-role-profile]
 }
 
 resource "aws_security_group" "sg-ec2" {
