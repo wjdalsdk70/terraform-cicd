@@ -2,11 +2,11 @@ terraform {
  required_version = ">= 1.0.0, < 2.0.0"
 
   backend "s3" {
-    bucket = "jung9546-terraformstate"
+    bucket = "jm4520-terraformstate"
     key  = "dev/terraform/terraform.tfstate"
     region = "ap-northeast-2"
     encrypt = true
-    dynamodb_table = "jung9546-terraform-state"
+    dynamodb_table = "jm4520-terraform-state"
   }
 }
 
@@ -17,7 +17,7 @@ module "vpc" {
   stage       = var.stage
   servicename = var.servicename
   tags        = var.tags
-  # region     = var.region
+  # region      = var.region
   # kms_arn = var.s3_kms_key_id
 
   vpc_ip_range = var.vpc_ip_range
@@ -42,7 +42,7 @@ module "vpc" {
   #security_attachments_propagation = merge(var.security_attachments_propagation, var.security_attachments)
 }
 
-module "jung9546-ec2" {
+module "jm4520-ec2" {
   source              = "../modules/instance"
 
   stage        = var.stage
@@ -53,7 +53,7 @@ module "jung9546-ec2" {
   instance_type             = var.instance_type
   ebs_size                  = var.instance_ebs_size
   #user_data                 = var.instance_user_data
-  kms_key_id                = var.ebs_kms_key_id
+  kms_key_id                = module.kms.ebs_kms_arn
   ec2-iam-role-profile-name = module.iam-service-role.ec2-iam-role-profile.name
   ssh_allow_comm_list       = [var.subnet_service_az1, var.subnet_service_az2]
 
@@ -126,6 +126,6 @@ module "rds" {
 
   rds_instance_count = var.rds_instance_count
 
-  kms_key_id = var.rds_kms_arn
+  kms_key_id = module.kms.rds_kms_arn
   depends_on = [module.vpc]
 }

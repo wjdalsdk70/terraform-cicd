@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "terraform_state" { 
-  bucket = "jung9546-terraformstate"
+  bucket = "jm4520-terraformstate"
   force_destroy = false
 }
 
@@ -43,8 +43,8 @@ resource "aws_s3_bucket_policy" "terraform_state_policy" {
         "s3:PutObject"
       ],
       "Resource": [
-        "arn:aws:s3:::jung9546-terraformstate",
-        "arn:aws:s3:::jung9546-terraformstate/*"
+        "arn:aws:s3:::jm4520-terraformstate",
+        "arn:aws:s3:::jm4520-terraformstate/*"
       ]
     }
   ]
@@ -53,7 +53,7 @@ POLICY
 }
 
 resource "aws_dynamodb_table" "terraform_lock" {
-  name         = "jung9546-terraformstate"
+  name         = "jm4520-terraformstate"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
 

@@ -25,7 +25,7 @@ resource "aws_instance" "ec2" {
   }
   user_data = var.user_data
 
-  key_name = "aws-keypair-${var.stage}-${var.servicename}" 
+  key_name = "ktb-admin" 
 
   tags = merge(tomap({
          Name =  "aws-ec2-${var.stage}-${var.servicename}"}),
@@ -38,7 +38,7 @@ resource "aws_instance" "ec2" {
 
 #instance sg
 resource "aws_security_group" "sg-ec2-comm" {
-  name   = "aws-sg-${var.stage}-${var.servicename}-ec2"
+  name   = "aws-sg-${var.stage}-${var.servicename}-ec2-comm"
   vpc_id = local.vpc_id
 
   ingress {

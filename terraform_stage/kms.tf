@@ -1,5 +1,5 @@
-module "iam-service-role" {
-  source = "../modules/iam/iam-service-role"
+module "kms" {
+  source = "../modules/kms"
   stage = var.stage
   servicename = var.servicename
   tags = var.tags  

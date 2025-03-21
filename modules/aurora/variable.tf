@@ -5,19 +5,19 @@ variable "stage"{
 }
 variable "servicename"{
   type = string
-  default = "jung9546"
+  default = "jm4520"
 }
 variable "tags"{
   type = map(string)
   default = {
-    "name" = "jung9546-db"
+    "name" = "jm4520-db"
   }
 }
 
 ##RDS
 variable "dbname" { #required
   type=string
-  default = "jung9546-db"
+  default = "jm4520-db"
 }
 variable "engine" {
   type=string
@@ -26,7 +26,7 @@ variable "engine" {
 
 variable "engine_version"{
   type= string
-  default = "8.0.mysql_aurora.3.01.0"
+  default = "8.0.mysql_aurora.3.04.0"
 }
 variable "master_username"{
   type = string
